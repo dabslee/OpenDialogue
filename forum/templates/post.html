@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include "navbar.html" %}
+<h1>Write a Post</h1>
+<form name="myForm" action="{% url 'forum:post' %}" method="POST">
+    {% csrf_token %}
+    {{ form | linebreaks}}
+    <input type="submit" value="Submit" onclick="return checkForm();">
+</form>
+{% endblock %}

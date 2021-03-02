@@ -1,0 +1,9 @@
+{% block content %}
+<p>Logged in as {{ user.username }}!</p>
+<p>Options:</p>
+<ul>
+    <li><a href="{% url 'forum:index' %}">Feed</a></li>
+    <li><a href="{% url 'logout' %}">Log out</a></li>
+    <li><a href="{% url 'forum:post' %}">Write a post</a></li>
+</ul>
+{% endblock %}

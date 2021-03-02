@@ -1,0 +1,15 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    </head>
+    <body>
+        <h1>OpenDialogue</h1>
+        {% block content %}
+        {% endblock %}
+    </body>
+    <footer>
+        <p>——<br>Brandon Lee, 2021</p>
+    </footer>
+</html>
