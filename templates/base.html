@@ -5,11 +5,12 @@
         <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
     </head>
     <body>
-        <h1>OpenDialogue</h1>
+        <a href="{% url 'home' %}" style="text-align: center; text-decoration: none;"><div style="color:green; font-size:48px;">OpenDialogue</div></a>
+        <br>
         {% block content %}
         {% endblock %}
     </body>
     <footer>
-        <p>——<br>Brandon Lee, 2021</p>
+        <p style="text-align: center;">——<br>Brandon Lee, 2021</p>
     </footer>
 </html>

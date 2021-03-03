@@ -1,9 +1,120 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:large;
+    margin: 50px 200px;
 }
 
 .post_box{
     padding: 20px;
-    border-color: black;
+    border-color: rgb(215, 230, 215);
     border-style: solid;
+    background:rgb(231, 235, 231);
+    cursor:pointer;
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+.post_box:hover{
+    opacity:0.6;
+}
+
+h1{
+    color:green;
+}
+
+.ulGray {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #444;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.container {
+    height: 100%;
+    position: relative;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.fancyShadeBox {
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+.fancyButton {
+    padding: 15px;
+    border-color: rgb(55, 125, 55);
+    border-style: solid;
+    background:rgb(60, 133, 60);
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 20px;
+    color: white;
+}
+
+.fancyButton:hover{
+    opacity:0.6;
+}
+
+textarea {
+    width: 100%;
+    height: 500px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

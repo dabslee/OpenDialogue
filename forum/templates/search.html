@@ -2,7 +2,12 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>Feed</h1>
+<h1>Search posts</h1>
+<form action="{% url 'forum:search' %}" method="post">
+    {% csrf_token %}
+    <input id="query" type="text" name="query" style="width:500px">
+    <input class="fancyButton" type="submit" value="OK">
+</form>
 {% for post in posts %}
 <div class="post_box" onclick='location.href="{% url 'forum:post' post.id %}";'>
     <h2>{{post.title}}</h2>

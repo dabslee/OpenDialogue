@@ -1,7 +1,21 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
-<p>Welcome to OpenDialogue.com! Sign in or register below.</p>
-<p><a href="{% url 'login' %}"> Log In </a></p>
-<p><a href="{% url 'signup' %}">Sign Up</a></p>
-{% endblock %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">            
+    </head>
+    <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: gray;">
+        <div class="container"><div class="center">
+            <div class="fancyShadeBox" style="background-color: white; text-align:center; width: 800px; height: 400px; padding: 50px;">
+                <center>
+                <div style="color:green; font-size:72px;">OpenDialogue</div>
+                <p>Welcome to OpenDialogue.com, the space for constructive free speech.</p>
+                <br>
+                <div class="fancyButton" style="width: 200px; font-size: 20px;" onclick='location.href="{% url 'authentication:login' %}";'>Log In</div>
+                <br>
+                <div class="fancyButton" style="width: 200px; font-size: 20px;" onclick='location.href="{% url 'authentication:signup' %}";'>Sign Up</div>
+                </center>
+            </div>
+        </div></div>
+    </body>
+</html>

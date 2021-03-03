@@ -2,10 +2,24 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>Write a Post</h1>
-<form name="myForm" action="{% url 'forum:post' %}" method="POST">
-    {% csrf_token %}
-    {{ form | linebreaks}}
-    <input type="submit" value="Submit" onclick="return checkForm();">
-</form>
+<h1>{{post.title}}</h1>
+<p><i>By {{post.author}} on {{post.created}}</i></p>
+<p>{{ post.content|linebreaks }}</p>
+<p>——<br>
+<i>{{post.views}} views&ensp;•&ensp;
+{% if post.agreechecks > 0 %}
+{% widthratio agrees agreechecks 100 %}% agree with this
+{% else %}
+Be the first to agree or disagree!
+{% endif %}
+👍&ensp;👎
+&ensp;•&ensp;
+{% if post.strongchecks > 0 %}
+{% widthratio strongs strongchecks 100 %}% think this was a strong argument
+{% else %}
+Be the first to judge the article as strong or weak!
+{% endif %}
+👍&ensp;👎
+</i>
+</p>
 {% endblock %}
