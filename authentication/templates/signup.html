@@ -7,6 +7,21 @@
     <p>Username: {{ form.username }}</p>
     <p>Password: {{ form.password1 }}</p>
     <p>Confirm password: {{ form.password2 }}</p>
+    <div style="color:red">{% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
     <br>
     <button class="fancyButton" type="submit">Sign up</button>
   </form>

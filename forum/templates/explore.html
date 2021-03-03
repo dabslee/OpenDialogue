@@ -2,7 +2,20 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>Feed</h1>
+<h1>Explore</h1>
+<form action="{% url 'forum:explore' %}" method="post">
+    {% csrf_token %}
+    <p>Search posts:</p>
+    <input id="query" type="text" name="query" style="width:500px" required="required">
+    <p>Sort results by:</p>
+    <select class="customSelect" name="sortby" id="sortby" style="width:500px">
+        <option value="date">Date published</option>
+        <option value="alpha">Alphabetical</option>
+        <option value="views">Views</option>
+    </select>
+    <br><br>
+    <input class="fancyButton" type="submit" value="OK">
+</form>
 {% for post in posts %}
 <div class="post_box" onclick='location.href="{% url 'forum:post' post.id %}";'>
     <h2>{{post.title}}</h2>

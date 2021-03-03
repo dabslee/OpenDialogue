@@ -1,7 +1,7 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size:large;
-    margin: 50px 200px;
+    margin: 50px 15%;
 }
 
 .post_box{
@@ -117,4 +117,20 @@ input[type="password"] {
     resize: none;
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.customSelect {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    color: green;
 }

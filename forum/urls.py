@@ -8,5 +8,6 @@ urlpatterns = [
     path('write_post', views.write_post, name='write_post'),
     path('post_successful', views.post_successful, name='post_successful'),
     path('post/<postid>', views.post, name='post'),
-    path('search', views.search, name='search'),
+    path('explore', views.explore, name='explore'),
+    path('account/<searchusername>', views.account, name='account'),
 ]

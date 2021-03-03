@@ -2,16 +2,15 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>Search posts</h1>
-<form action="{% url 'forum:search' %}" method="post">
-    {% csrf_token %}
-    <input id="query" type="text" name="query" style="width:500px">
-    <input class="fancyButton" type="submit" value="OK">
-</form>
+<h1>Account page: {{ searcheduser.username }}</h1>
+<p>Joined on: {{ searcheduser.date_joined }}</p>
+<p>Number of posts: {{ posts | length }}</p>
+<p>Total views: {{ totalviews }}</p>
+<h2>Posts made by {{ searcheduser.username }}:</h2>
 {% for post in posts %}
 <div class="post_box" onclick='location.href="{% url 'forum:post' post.id %}";'>
     <h2>{{post.title}}</h2>
-    <p><i>By {{post.author}} on {{post.created}}</i></p>
+    <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
     <p>{% with broken=post.content|linebreaks %}{{broken|truncatechars:300}}{% endwith %}</p>
     <p>——<br><i>{{post.views}} views</i>
     {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>{% widthratio agrees agreechecks 100 %}% agree with this</i> {% endif %}
