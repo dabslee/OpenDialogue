@@ -6,20 +6,22 @@
 <p><i>By {{post.author}} on {{post.created}}</i></p>
 <p>{{ post.content|linebreaks }}</p>
 <p>——<br>
-<i>{{post.views}} views&ensp;•&ensp;
+<i>{{post.views}} views<br>
 {% if post.agreechecks > 0 %}
-{% widthratio agrees agreechecks 100 %}% agree with this
+{% widthratio post.agrees post.agreechecks 100 %}% agree with this
 {% else %}
 Be the first to agree or disagree!
 {% endif %}
-👍&ensp;👎
-&ensp;•&ensp;
+<a href="{% url 'forum:agree' post.id %}" style="{% if agreed %}color: limegreen{% else %}color: lightgray{% endif %}; text-decoration: none;">▲</a>&ensp;
+<a href="{% url 'forum:disagree' post.id %}" style="{% if disagreed %}color: red{% else %}color: lightgray{% endif %}; text-decoration: none;">▼</a>
+<br>
 {% if post.strongchecks > 0 %}
-{% widthratio strongs strongchecks 100 %}% think this was a strong argument
+{% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument
 {% else %}
 Be the first to judge the article as strong or weak!
 {% endif %}
-👍&ensp;👎
+<a href="{% url 'forum:strong' post.id %}" style="{% if stronged %}color: limegreen{% else %}color: lightgray{% endif %}; text-decoration: none;">▲</a>&ensp;
+<a href="{% url 'forum:weak' post.id %}" style="{% if weaked %}color: red{% else %}color: lightgray{% endif %}; text-decoration: none;">▼</a>
 </i>
 </p>
 {% endblock %}

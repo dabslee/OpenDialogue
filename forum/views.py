@@ -49,14 +49,28 @@ def post(request, postid):
     context['user'] = request.user
     thepost = Post.objects.get(id=postid)
     context['post'] = thepost
-    try:
-        UserWrapper.objects.get(user=request.user)
-    except ObjectDoesNotExist:
-        UserWrapper.objects.create(user=request.user)
+    UserWrapper.objects.get_or_create(user=request.user)
     if not UserWrapper.objects.filter(user=request.user).filter(viewed=thepost).exists():
         thepost.views += 1
         thepost.save()
         UserWrapper.objects.get(user=request.user).viewed.add(thepost)
+    if UserWrapper.objects.filter(user=request.user).filter(agreed=thepost).exists():
+        context['agreed'] = True
+    else:
+        context['agreed'] = False
+    if UserWrapper.objects.filter(user=request.user).filter(disagreed=thepost).exists():
+        context['disagreed'] = True
+    else:
+        context['disagreed'] = False
+    if UserWrapper.objects.filter(user=request.user).filter(stronged=thepost).exists():
+        context['stronged'] = True
+    else:
+        context['stronged'] = False
+    if UserWrapper.objects.filter(user=request.user).filter(weaked=thepost).exists():
+        context['weaked'] = True
+    else:
+        context['weaked'] = False
+        
     return render(request, "post.html", context)
 
 def explore(request):
@@ -92,3 +106,71 @@ def account(request, searchusername):
     context['posts'] = Post.objects.filter(Q(author__username=searchusername))
     context['totalviews'] = sum(post.views for post in context['posts'])
     return render(request, "account.html", context)
+
+def agree(request, postid):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    context = {}
+    context['user'] = request.user
+    thepost = Post.objects.get(id=postid)
+    UserWrapper.objects.get_or_create(user=request.user)
+    if not UserWrapper.objects.filter(user=request.user).filter(agreed=thepost).exists():
+        thepost.agrees += 1
+        if not UserWrapper.objects.filter(user=request.user).filter(disagreed=thepost).exists():
+            thepost.agreechecks += 1
+        else:
+            UserWrapper.objects.get(user=request.user).disagreed.remove(thepost)
+        thepost.save()
+        UserWrapper.objects.get(user=request.user).agreed.add(thepost)
+    return redirect('forum:post', postid=postid)
+
+def disagree(request, postid):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    context = {}
+    context['user'] = request.user
+    thepost = Post.objects.get(id=postid)
+    UserWrapper.objects.get_or_create(user=request.user)
+    if not UserWrapper.objects.filter(user=request.user).filter(disagreed=thepost).exists():
+        if not UserWrapper.objects.filter(user=request.user).filter(agreed=thepost).exists():
+            thepost.agreechecks += 1
+        else:
+            thepost.agrees -= 1
+            UserWrapper.objects.get(user=request.user).agreed.remove(thepost)
+        thepost.save()
+        UserWrapper.objects.get(user=request.user).disagreed.add(thepost)
+    return redirect('forum:post', postid=postid)
+
+def strong(request, postid):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    context = {}
+    context['user'] = request.user
+    thepost = Post.objects.get(id=postid)
+    UserWrapper.objects.get_or_create(user=request.user)
+    if not UserWrapper.objects.filter(user=request.user).filter(stronged=thepost).exists():
+        thepost.strongs += 1
+        if not UserWrapper.objects.filter(user=request.user).filter(weaked=thepost).exists():
+            thepost.strongchecks += 1
+        else:
+            UserWrapper.objects.get(user=request.user).weaked.remove(thepost)
+        thepost.save()
+        UserWrapper.objects.get(user=request.user).stronged.add(thepost)
+    return redirect('forum:post', postid=postid)
+
+def weak(request, postid):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    context = {}
+    context['user'] = request.user
+    thepost = Post.objects.get(id=postid)
+    UserWrapper.objects.get_or_create(user=request.user)
+    if not UserWrapper.objects.filter(user=request.user).filter(weaked=thepost).exists():
+        if not UserWrapper.objects.filter(user=request.user).filter(stronged=thepost).exists():
+            thepost.strongchecks += 1
+        else:
+            thepost.strongs -= 1
+            UserWrapper.objects.get(user=request.user).stronged.remove(thepost)
+        thepost.save()
+        UserWrapper.objects.get(user=request.user).weaked.add(thepost)
+    return redirect('forum:post', postid=postid)

@@ -19,4 +19,6 @@ class UserWrapper(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     viewed = models.ManyToManyField(Post, related_name='viewed', blank=True)
     agreed = models.ManyToManyField(Post, related_name='agreed', blank=True)
+    disagreed = models.ManyToManyField(Post, related_name='disagreed', blank=True)
     stronged = models.ManyToManyField(Post, related_name='stronged', blank=True)
+    weaked = models.ManyToManyField(Post, related_name='weaked', blank=True)
