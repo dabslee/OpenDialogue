@@ -7,5 +7,5 @@ app_name = 'authentication'
 urlpatterns = [
     path('login', LoginView.as_view(template_name="login.html"), name='login'),
     path('signup', views.signup, name='signup'),
-    path('logout', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
+    path('logout', LogoutView.as_view(next_page='home'), name='logout'),
 ]

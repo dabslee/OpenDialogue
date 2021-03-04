@@ -14,7 +14,7 @@ def index(request):
     if request.user.is_authenticated:
         context = {}
         context['user'] = request.user
-        context['posts'] = Post.objects.all()
+        context['posts'] = Post.objects.all().order_by("-views")[:5]
         return render(request, "index.html", context)
     else:
         return redirect('home')
@@ -70,6 +70,7 @@ def post(request, postid):
         context['weaked'] = True
     else:
         context['weaked'] = False
+    context['responses'] = Post.objects.get(id=postid).postparent.all()
         
     return render(request, "post.html", context)
 
@@ -174,3 +175,21 @@ def weak(request, postid):
         thepost.save()
         UserWrapper.objects.get(user=request.user).weaked.add(thepost)
     return redirect('forum:post', postid=postid)
+
+def respond_post(request, postid):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        author = request.user
+        parent = Post.objects.get(id=postid)
+        new_post = Post(author=author, title=title, content=content, created=datetime.datetime.now(), parent=parent, parentid=postid, parenttitle=parent.title, parentauthor=parent.author)
+        new_post.save()
+        return redirect('forum:post_successful')
+    else:
+        context = {}
+        context['user'] = request.user
+        context['form'] = PostForm()
+        context['parent'] = Post.objects.get(id=postid)
+        return render(request, "respond_post.html", context)

@@ -6,6 +6,7 @@ app_name = 'forum'
 urlpatterns = [
     path('', views.index, name='index'),
     path('write_post', views.write_post, name='write_post'),
+    path('respond_post/<postid>', views.respond_post, name='respond_post'),
     path('post_successful', views.post_successful, name='post_successful'),
     path('post/<postid>', views.post, name='post'),
     path('agree/<postid>', views.agree, name='agree'),

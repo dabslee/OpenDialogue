@@ -2,8 +2,10 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>{{post.title}}</h1>
-<p><i>By {{post.author}} on {{post.created}}</i></p>
+<h1>{{post.title}}
+{% if post.parentid != None %}<br><div style="font-size: 20px; color:black">⮨ Responding to <a href="{% url 'forum:post' post.parentid %}">"{{ post.parenttitle }}"</a> by <a href="{% url 'forum:account' post.parentauthor %}">{{ post.parentauthor }}</a></div>{% endif %}
+</h1>
+<p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
 <p>{{ post.content|linebreaks }}</p>
 <p>——<br>
 <i>{{post.views}} views<br>
@@ -24,4 +26,21 @@ Be the first to judge the article as strong or weak!
 <a href="{% url 'forum:weak' post.id %}" style="{% if weaked %}color: red{% else %}color: lightgray{% endif %}; text-decoration: none;">▼</a>
 </i>
 </p>
+<h2>Responses:</h2>
+<p><a href="{% url 'forum:respond_post' post.id %}" style="text-decoration: none;">⮨ Respond to this post.</a></p>
+{% if responses|length == 0 %}
+<p>No responses yet</p>
+{% endif %}
+{% for post in responses %}
+<div class="post_box" onclick='location.href="{% url 'forum:post' post.id %}";'>
+    <h3>{{post.title}}</h3>
+    <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
+    <p>{% with broken=post.content|linebreaks %}{{broken|truncatechars:300}}{% endwith %}</p>
+    <p>——<br><i>{{post.views}} views</i>
+    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>{% widthratio post.agrees post.agreechecks 100 %}% agree with this</i> {% endif %}
+    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>{% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument</i> {% endif %}
+    </p>
+    </div>
+<br>
+{% endfor %}
 {% endblock %}

@@ -4,11 +4,12 @@
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">            
     </head>
-    <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: gray;">
+    <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-image: url('{% static 'background2.jpg' %}'); background-size: cover; background-repeat:no-repeat">
         <div class="container"><div class="center">
             <div class="fancyShadeBox" style="background-color: white; text-align:center; width: 800px; height: 400px; padding: 50px;">
                 <center>
-                <div style="color:green; font-size:72px;">OpenDialogue</div>
+                <br>
+                <div style="color:green; font-size:72px;">🌿 OpenDialogue&ensp;&ensp;</div>
                 <p>Welcome to OpenDialogue.com, the space for constructive free speech.</p>
                 <br>
                 <div class="fancyButton" style="width: 200px; font-size: 20px;" onclick='location.href="{% url 'authentication:login' %}";'>Log In</div>

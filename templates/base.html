@@ -5,12 +5,14 @@
         <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
     </head>
     <body>
-        <a href="{% url 'home' %}" style="text-align: center; text-decoration: none;"><div style="color:green; font-size:48px;">OpenDialogue</div></a>
-        <br>
-        {% block content %}
-        {% endblock %}
+        <div style="min-height: calc(100vh - 175px);">
+            <a href="{% url 'home' %}" style="text-align: center; text-decoration: none;"><div style="color:green; font-size:48px;">🌿 OpenDialogue&ensp;&ensp;&ensp;</div></a>
+            <br>
+            {% block content %}
+            {% endblock %}
+        </div>
     </body>
-    <footer>
-        <p style="text-align: center;">——<br>Brandon Lee, 2021</p>
+    <footer style="background: #ddd; margin: 0px calc(-3/14*100%) -50px; height: max-content; text-align: center; padding: 20px;">
+        <p><a href="{% url 'home' %}">OpenDialogue.com</a><br>Brandon Lee, 2021 • ORF401</p>
     </footer>
 </html>

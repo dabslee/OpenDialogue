@@ -2,10 +2,12 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>Feed</h1>
+<h1>Recommended</h1>
 {% for post in posts %}
 <div class="post_box" onclick='location.href="{% url 'forum:post' post.id %}";'>
-    <h2>{{post.title}}</h2>
+    <h2>{{post.title}}
+    {% if post.parentid != None %}<br><div style="font-size: 20px">⮨ Responding to <a href="{% url 'forum:post' post.parentid %}">"{{ post.parenttitle }}"</a> by <a href="{% url 'forum:account' post.parentauthor %}">{{ post.parentauthor }}</a></div>{% endif %}
+    </h2>
     <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
     <p>{% with broken=post.content|linebreaks %}{{broken|truncatechars:300}}{% endwith %}</p>
     <p>——<br><i>{{post.views}} views</i>

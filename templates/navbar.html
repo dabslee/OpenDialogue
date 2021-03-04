@@ -1,9 +1,11 @@
 {% block content %}
-<div class="ulGray">
-    <li style="float: left;"><a href="{% url 'forum:index' %}">Feed</a></li>
-    <li style="float: left;"><a href="{% url 'forum:write_post' %}">Write a post</a></li>
-    <li style="float: left;"><a href="{% url 'forum:explore' %}">Explore</a></li>
-    <li style="float: right;"><a href="{% url 'authentication:logout' %}">Log out</a></li>
-    <li style="float: right;"><a href="{% url 'forum:account' user.username %}">Logged in as {{ user.username }}</a></li>
+<div class="ulGray" style="margin: 0px calc(-3/14*100%);">
+    <div style="margin: 0px 15%">
+        <li style="float: left;"><a href="{% url 'forum:index' %}">Recommended</a></li>
+        <li style="float: left;"><a href="{% url 'forum:write_post' %}">Write a post</a></li>
+        <li style="float: left;"><a href="{% url 'forum:explore' %}">Explore</a></li>
+        <li style="float: right;"><a href="{% url 'authentication:logout' %}">Log out</a></li>
+        <li style="float: right;"><a href="{% url 'forum:account' user.username %}">Logged in as {{ user.username }}</a></li>
+    </div>
 </div>
 {% endblock %}
