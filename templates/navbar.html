@@ -6,6 +6,14 @@
         <li style="float: left;"><a href="{% url 'forum:explore' %}">Explore</a></li>
         <li style="float: right;"><a href="{% url 'authentication:logout' %}">Log out</a></li>
         <li style="float: right;"><a href="{% url 'forum:account' user.username %}">Logged in as {{ user.username }}</a></li>
+        <li style="float: right; color: white; padding: 10px 16px"><div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <div style="font-style: normal;">&ensp;☾</div>
+        </div>
+        </li>
     </div>
 </div>
 {% endblock %}

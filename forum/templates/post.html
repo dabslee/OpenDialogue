@@ -3,7 +3,7 @@
 {% block content %}
 {% include "navbar.html" %}
 <h1>{{post.title}}
-{% if post.parentid != None %}<br><div style="font-size: 20px; color:black">⮨ Responding to <a href="{% url 'forum:post' post.parentid %}">"{{ post.parenttitle }}"</a> by <a href="{% url 'forum:account' post.parentauthor %}">{{ post.parentauthor }}</a></div>{% endif %}
+{% if post.parentid != None %}<br><div style="font-size: 20px; color:gray">⮨ Responding to <a href="{% url 'forum:post' post.parentid %}">"{{ post.parenttitle }}"</a> by <a href="{% url 'forum:account' post.parentauthor %}">{{ post.parentauthor }}</a></div>{% endif %}
 </h1>
 <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
 <p>{{ post.content|linebreaks }}</p>
