@@ -23,11 +23,11 @@
     </h2>
     <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
     <p>{% with broken=post.content|linebreaks %}{{broken|truncatechars:300}}{% endwith %}</p>
-    <p>——<br><i>{{post.views}} views</i>
-    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>{% widthratio agrees agreechecks 100 %}% agree with this</i> {% endif %}
-    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>{% widthratio strongs strongchecks 100 %}% think this was a strong argument</i> {% endif %}
+    <p>——<br><i>👁️ {{post.views}} views</i>
+    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>👍 {% widthratio post.agrees post.agreechecks 100 %}% agree with this</i> {% endif %}
+    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>💪 {% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument</i> {% endif %}
     </p>
-    </div>
+</div>
 <br>
 {% endfor %}
 {% endblock %}

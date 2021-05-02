@@ -8,8 +8,8 @@
 <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
 <p>{{ post.content|linebreaks }}</p>
 <p>——<br>
-<i>{{post.views}} views<br>
-{% if post.agreechecks > 0 %}
+<i>👁️ {{post.views}} views<br>
+👍 {% if post.agreechecks > 0 %}
 {% widthratio post.agrees post.agreechecks 100 %}% agree with this
 {% else %}
 Be the first to agree or disagree!
@@ -17,7 +17,7 @@ Be the first to agree or disagree!
 <a href="{% url 'forum:agree' post.id %}" style="{% if agreed %}color: limegreen{% else %}color: lightgray{% endif %}; text-decoration: none;">▲</a>&ensp;
 <a href="{% url 'forum:disagree' post.id %}" style="{% if disagreed %}color: red{% else %}color: lightgray{% endif %}; text-decoration: none;">▼</a>
 <br>
-{% if post.strongchecks > 0 %}
+💪 {% if post.strongchecks > 0 %}
 {% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument
 {% else %}
 Be the first to judge the article as strong or weak!
@@ -33,14 +33,14 @@ Be the first to judge the article as strong or weak!
 {% endif %}
 {% for post in responses %}
 <div class="post_box" onclick='location.href="{% url 'forum:post' post.id %}";'>
-    <h3>{{post.title}}</h3>
+    <h2>{{post.title}}</h2>
     <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
     <p>{% with broken=post.content|linebreaks %}{{broken|truncatechars:300}}{% endwith %}</p>
-    <p>——<br><i>{{post.views}} views</i>
-    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>{% widthratio post.agrees post.agreechecks 100 %}% agree with this</i> {% endif %}
-    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>{% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument</i> {% endif %}
+    <p>——<br><i>👁️ {{post.views}} views</i>
+    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>👍 {% widthratio post.agrees post.agreechecks 100 %}% agree with this</i> {% endif %}
+    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>💪 {% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument</i> {% endif %}
     </p>
-    </div>
+</div>
 <br>
 {% endfor %}
 {% endblock %}

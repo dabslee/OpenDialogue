@@ -2,11 +2,20 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<h1>Account page: {{ searcheduser.username }}</h1>
-<p>Joined on: {{ searcheduser.date_joined }}</p>
-<p>Number of posts: {{ posts | length }}</p>
-<p>Total views: {{ totalviews }}</p>
-<h2>Posts made by {{ searcheduser.username }}:</h2>
+<h1><b>Account page:</b> {{ searcheduser.username }}</h1>
+<table style="width:100%;">
+    <tr>
+        <td>
+            <p><b>🎂 Joined on:</b> {{ searcheduser.date_joined }}</p>
+            <p><b>👁️ Total views:</b> {{ totalviews }}</p>
+        </td>
+        <td>
+            <p><b>👍 Average agreement rating:</b> 89%</p>
+            <p><b>💪 Average strength rating:</b> 56%</p>
+        </td>
+    </tr>
+</table>
+<h2>Posts made by {{ searcheduser.username }} ({{ posts | length }}):</h2>
 {% if posts|length == 0 %}
 <p>No posts yet</p>
 {% endif %}
@@ -17,11 +26,11 @@
     </h2>
     <p><i>By <a href="{% url 'forum:account' post.author %}">{{post.author}}</a> on {{post.created}}</i></p>
     <p>{% with broken=post.content|linebreaks %}{{broken|truncatechars:300}}{% endwith %}</p>
-    <p>——<br><i>{{post.views}} views</i>
-    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>{% widthratio post.agrees post.agreechecks 100 %}% agree with this</i> {% endif %}
-    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>{% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument</i> {% endif %}
+    <p>——<br><i>👁️ {{post.views}} views</i>
+    {% if post.agreechecks > 0 %} &ensp;•&ensp; <i>👍 {% widthratio post.agrees post.agreechecks 100 %}% agree with this</i> {% endif %}
+    {% if post.strongchecks > 0 %} &ensp;•&ensp; <i>💪 {% widthratio post.strongs post.strongchecks 100 %}% think this was a strong argument</i> {% endif %}
     </p>
-    </div>
+</div>
 <br>
 {% endfor %}
 {% endblock %}

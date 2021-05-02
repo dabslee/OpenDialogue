@@ -12,7 +12,7 @@ def index(request):
     if not request.user.is_authenticated:
         return redirect('home')
     if request.user.is_authenticated:
-        context = {}
+        context = {"current_page": "index"}
         context['user'] = request.user
         context['posts'] = Post.objects.all().order_by("-views")[:5]
         return render(request, "index.html", context)
@@ -30,7 +30,7 @@ def write_post(request):
         new_post.save()
         return redirect('forum:post_successful')
     else:
-        context = {}
+        context = {"current_page": "write_post"}
         context['user'] = request.user
         context["form"] = PostForm()
         return render(request, "write_post.html", context)
@@ -78,7 +78,7 @@ def explore(request):
     if not request.user.is_authenticated:
         return redirect('home')
         
-    context = {}
+    context = {"current_page": "explore"}
     context['user'] = request.user
     if request.method == "POST":
         query = request.POST.get("query")

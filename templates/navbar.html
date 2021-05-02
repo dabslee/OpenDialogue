@@ -1,9 +1,9 @@
 {% block content %}
-<div class="ulGray" style="margin: 0px calc(-3/14*100%);">
+<div class="ulGray" style="margin: 0px calc(-3/14*100%); position:sticky; top:0; z-index: 2">
     <div style="margin: 0px 15%">
-        <li style="float: left;"><a href="{% url 'forum:index' %}">Recommended</a></li>
-        <li style="float: left;"><a href="{% url 'forum:write_post' %}">Write a post</a></li>
-        <li style="float: left;"><a href="{% url 'forum:explore' %}">Explore</a></li>
+        <li style="float: left;{% if current_page == "index" %}background-color:#676;{% endif %}"><a href="{% url 'forum:index' %}">Recommended</a></li>
+        <li style="float: left;{% if current_page == "write_post" %}background-color:#676;{% endif %}"><a href="{% url 'forum:write_post' %}">Write a post</a></li>
+        <li style="float: left;{% if current_page == "explore" %}background-color:#676;{% endif %}"><a href="{% url 'forum:explore' %}">Explore</a></li>
         <li style="float: right;"><a href="{% url 'authentication:logout' %}">Log out</a></li>
         <li style="float: right;"><a href="{% url 'forum:account' user.username %}">Logged in as {{ user.username }}</a></li>
         <li style="float: right; color: white; padding: 10px 16px"><div class="theme-switch-wrapper">
