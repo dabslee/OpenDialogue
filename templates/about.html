@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="ulGray" style="margin: 0px calc(-3/14*100%); position:sticky; top:0; z-index: 2">
+    <div style="margin: 0px 15%">
+        <li style="float: left;{% if current_page == "index" %}background-color:#676;{% endif %}"><a href="{% url 'forum:index' %}">Recommended</a></li>
+        <li style="float: left;{% if current_page == "write_post" %}background-color:#676;{% endif %}"><a href="{% url 'forum:write_post' %}">Write a post</a></li>
+        <li style="float: left;{% if current_page == "explore" %}background-color:#676;{% endif %}"><a href="{% url 'forum:explore' %}">Explore</a></li>
+        <li style="float: right; color: white; padding: 10px 16px"><div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <div style="font-style: normal;">&ensp;☾</div>
+        </div>
+        </li>
+    </div>
+</div>
+<h1>About Us</h1>
+<h2>Mission</h2>
+<p><i>OpenDiscussion</i> is a forum website designed to promote safe, high-quality discussions between opposing ideas.</p>
+<p>Online spaces often struggle with three interlacing problems:</p>
+<ol>
+    <li style="padding: 5px 0px;"><b>Echo chambers:</b> Online spaces often degenerate into echo chambers, where people end up only exposed to ideas that they agree with, radicalizing them. Sometimes, censorship can aid in this, as censorship might asymmetrically reduce exposure to certain opinions.</li>
+    <li style="padding: 5px 0px;"><b>Safety and quality:</b> On the other end of the spectrum, a complete lack of censorship or moderation can lead to unsafe discussions or poor-quality posting.</li>
+</ol>
+<p><i>OpenDiscussion</i>'s purpose is to try and provide an online forum that addresses these issues--to provide a forum that is safe and high-quality without resorting to censorship.</p>
+<h2>Highlighted Features</h2>
+<ul>
+    <li style="padding: 5px 0px;"><b>Posts:</b> Users can write and upload posts to our forum. Posts have a minimum length of 2000 characters (~300 words) in order to promote more thought-out posts.</li>
+    <li style="padding: 5px 0px;"><b>Upvote system:</b> Instead of a generic upvote/downvote system, we have specific agreement & strength voting. Users vote individually on whether they agree with a post and whether they think a post makes a strong argument.</li>
+    <li style="padding: 5px 0px;"><b>Responding to posts:</b> Instead of comments, you respond to posts with your own post. Thus, instead of brief superficial comments, to respond to a post you are encouraged to make your own well-thought-out argument.</li>
+    <li style="padding: 5px 0px;"><b>Recommended posts feed:</b> The landing page for the user is a recommended posts feed, where you receive 5 posts daily that <i>OpenDiscussion</i> recommends reading. The site prioritizes high strength, high controversiality posts.</li>
+</ul>
+{% endblock %}

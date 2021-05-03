@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', core_views.home, name='home'),
     path('authentication/', include('authentication.urls'), name='authentication'),
-    path('forum/', include('forum.urls'), name='forum')
+    path('forum/', include('forum.urls'), name='forum'),
+    path('about/', core_views.about, name='about')
 ]

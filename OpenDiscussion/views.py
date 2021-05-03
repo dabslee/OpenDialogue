@@ -7,3 +7,6 @@ def home(request):
         return redirect('forum:index')
     else:
         return render(request, 'home.html', {})
+
+def about(request):
+    return render(request, 'about.html', {})
